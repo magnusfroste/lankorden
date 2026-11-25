@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<title>Länkorden – bindeord i engelska (åk 7–9)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Träna engelska bindeord: välj det ord som gör att två satser hänger ihop – orsak, följd, motsats, tid eller tillägg. Åk 7–9.">
+<meta name="theme-color" content="#FBF7EF">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header id="hud">
+  <div id="hudVanster">
+    <span id="nivaText">Nivå 1</span>
+    <span class="stjarna" aria-hidden="true">⭐</span><span id="stjarnText" aria-label="stjärnor">0</span>
+  </div>
+  <div id="prickar" aria-hidden="true"></div>
+  <button id="ljud" type="button" aria-label="Stäng av ljudet" aria-pressed="true">🔊</button>
+</header>
+<div id="framsteg" aria-hidden="true"></div>
+
+<main id="spel" hidden>
+  <section id="fraga" aria-live="polite">
+    <p class="sats" id="satsA"></p>
+    <p class="sats"><span id="lucka">?</span> <span id="satsB"></span></p>
+  </section>
+  <p id="aterkoppling"></p>
+  <div id="alternativ"></div>
+</main>
+
+<section id="startskarm">
+  <div class="start-inner">
+    <h1>Länkorden</h1>
+    <p class="ingress">Två satser står bredvid varandra. Välj det bindeord som gör att de hänger ihop
+      – som orsak, följd, motsats, tid eller tillägg.</p>
+    <ul class="sa-funkar">
+      <li>Tryck på ett av de fyra orden under satserna.</li>
+      <li>Fel svar kostar ingenting – du får en ledtråd och provar igen.</li>
+      <li>Stjärnan får du om du svarar rätt på första försöket.</li>
+    </ul>
+    <button id="play" type="button">Spela</button>
+    <details class="larare">
+      <summary>För lärare</summary>
+      <p><strong>Ämne och år:</strong> Engelska, åk 7–9. En mekanik, tio uppgifter per nivå, cirka fem minuter per nivå.</p>
+      <p><strong>Lgr22:</strong> EN.7-9.2.8 – ”Hur sammanbindande ord och andra uttryck används för att skapa struktur och språkligt sammanhängande helheter.”</p>
+      <p>Appen tränar bindeordens betydelse i sammanhang: barnet måste läsa båda satserna och avgöra vilken
+        relation de har till varandra innan det väljer ord. Nivå 1 är orsak och följd (because, so, therefore),
+        nivå 2 motsats (but, however, although) och nivå 3 tid och tillägg (while, meanwhile, afterwards, moreover, when).
+        Efter varje svar förklaras relationen på svenska. Uppgifterna är skrivna för appen; inga texter är hämtade från andra.</p>
+      <p>Ingen inloggning, ingen reklam, inga länkar ut, inga uppgifter om barn sparas.</p>
+    </details>
+  </div>
+</section>
+
+<div id="klart" hidden>
+  <div class="klart-inner">
+    <p id="klartStjarnor" class="klart-stjarnor">⭐</p>
+    <h2 id="klartTitel">Nivå 1 klar!</h2>
+    <p id="klartText"></p>
+    <button id="klartKnapp" type="button">Nästa nivå</button>
+    <button id="klartIgen" type="button" class="svag">Spela nivån igen</button>
+  </div>
+</div>
+
+<script src="ljud/lines.js"></script>
+<script src="ljud/rosten.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script src="https://www.skolappar.com/kotten.js" defer></script>
+</body>
+</html>

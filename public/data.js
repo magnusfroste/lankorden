@@ -1,0 +1,126 @@
+// data.js — 30 uppgifter i tre nivåer. Varje post: två satser och fyra bindeord,
+// där exakt ett gör att hela texten hänger ihop och blir sann.
+// kat = vilken relation bindeordet uttrycker. Verifieras av verify.cjs.
+const KAT = {
+  orsak: 'orsak', fojld: 'följd', motsats: 'motsats', tid: 'tid', tillagg: 'tillägg'
+};
+
+const ORD = {
+  because:   { kat: KAT.orsak,   sv: 'eftersom – ger orsaken' },
+  since:     { kat: KAT.orsak,   sv: 'eftersom – ger orsaken' },
+  so:        { kat: KAT.fojld,   sv: 'så – ger följden' },
+  therefore: { kat: KAT.fojld,   sv: 'därför – ger följden' },
+  but:       { kat: KAT.motsats, sv: 'men – ställer två saker mot varandra' },
+  however:   { kat: KAT.motsats, sv: 'however – men, som inledning av en ny sats' },
+  although:  { kat: KAT.motsats, sv: 'although – fastän' },
+  while:     { kat: KAT.tid,     sv: 'while – medan, samtidigt' },
+  meanwhile: { kat: KAT.tid,     sv: 'meanwhile – under tiden' },
+  afterwards:{ kat: KAT.tid,     sv: 'afterwards – efteråt' },
+  moreover:  { kat: KAT.tillagg, sv: 'moreover – dessutom' },
+  also:      { kat: KAT.tillagg, sv: 'also – också' }
+};
+
+// slot: 'start' = bindeordet börjar en ny sats (versalt + komma efter),
+//       'mitt'  = bindeordet står inne i satsen.
+const DATA = [
+  // ---------- Nivå 1: orsak och följd ----------
+  { niva: 1, a: 'It was raining hard all morning.', b: 'the football match was cancelled.',
+    ratt: 'so', fel: ['because', 'however', 'meanwhile'], slot: 'start',
+    forkl: 'Regnet kom förste och matchen ställdes in efteråt – det är följden, alltså "so".' },
+  { niva: 1, a: 'The match was cancelled', b: 'it was raining hard all morning.',
+    ratt: 'because', fel: ['so', 'but', 'moreover'], slot: 'mitt',
+    forkl: '"Because" ger orsaken: matchen ställdes in eftersom det regnade.' },
+  { niva: 1, a: 'Lina had practised every day for a year.', b: 'she won the swimming final.',
+    ratt: 'therefore', fel: ['although', 'while', 'also'], slot: 'start',
+    forkl: 'Träningen är orsaken, vinsten följden. "Therefore" pekar framåt mot följden.' },
+  { niva: 1, a: 'The bus was late', b: 'we missed the start of the film.',
+    ratt: 'so', fel: ['because', 'however', 'afterwards'], slot: 'start',
+    forkl: 'Bussen var sen först, vi missade filmen efteråt – följd.' },
+  { niva: 1, a: 'We missed the start of the film', b: 'the bus was late.',
+    ratt: 'because', fel: ['so', 'but', 'moreover'], slot: 'mitt',
+    forkl: 'Orsaken står efter bindeordet: vi missade filmen eftersom bussen var sen.' },
+  { niva: 1, a: 'Omar forgot his keys at home.', b: 'he could not open the door.',
+    ratt: 'so', fel: ['although', 'while', 'also'], slot: 'start',
+    forkl: 'Nycklarna blev kvar, dörren gick inte att öppna – följd.' },
+  { niva: 1, a: 'The ice on the lake was thin', b: 'nobody was allowed to skate.',
+    ratt: 'so', fel: ['because', 'however', 'meanwhile'], slot: 'start',
+    forkl: 'Tunn is först, förbudet efter – följd.' },
+  { niva: 1, a: 'Nobody was allowed to skate', b: 'the ice on the lake was thin.',
+    ratt: 'because', fel: ['so', 'but', 'moreover'], slot: 'mitt',
+    forkl: '"Because" ger orsaken: ingen fick åka skridskor eftersom isen var tunn.' },
+  { niva: 1, a: 'Sara had never cooked before.', b: 'she followed the recipe very carefully.',
+    ratt: 'so', fel: ['although', 'while', 'also'], slot: 'start',
+    forkl: 'Hon hade aldrig lagat mat, därför läste hon receptet noga – följd.' },
+  { niva: 1, a: 'The shop was closed', b: 'it was a public holiday.',
+    ratt: 'because', fel: ['so', 'however', 'meanwhile'], slot: 'mitt',
+    forkl: 'Helgdagen är orsaken till att affären var stängd.' },
+
+  // ---------- Nivå 2: motsats ----------
+  { niva: 2, a: 'The sun was shining.', b: 'it was freezing cold.',
+    ratt: 'however', fel: ['because', 'so', 'moreover'], slot: 'start',
+    forkl: '"However" ställer den andra satsen mot den första: sol men kallt.' },
+  { niva: 2, a: 'Elias had studied for weeks', b: 'he was still nervous before the test.',
+    ratt: 'but', fel: ['because', 'so', 'afterwards'], slot: 'mitt',
+    forkl: '"But" viker av från det man väntar sig: pluggat länge, ändå nervös.' },
+  { niva: 2, a: 'The team played well', b: 'they lost the match.',
+    ratt: 'although', fel: ['because', 'so', 'meanwhile'], slot: 'mitt',
+    forkl: '"Although" medger något som talar emot resultatet: de spelade bra fastän de förlorade.' },
+  { niva: 2, a: 'Maja is only twelve.', b: 'she speaks four languages.',
+    ratt: 'however', fel: ['therefore', 'because', 'while'], slot: 'start',
+    forkl: 'Åldern talar emot förväntningen, språken motbevisar den – motsats.' },
+  { niva: 2, a: 'The phone was expensive', b: 'it broke after two weeks.',
+    ratt: 'but', fel: ['because', 'so', 'moreover'], slot: 'mitt',
+    forkl: 'Dyrt borde betyda hållbart – "but" visar att det inte stämde.' },
+  { niva: 2, a: 'The trail was steep and muddy.', b: 'they reached the top before sunset.',
+    ratt: 'however', fel: ['so', 'because', 'meanwhile'], slot: 'start',
+    forkl: 'Den jobbiga leden talar emot att de skulle komma upp i tid – motsats.' },
+  { niva: 2, a: 'Hugo had practised the song a hundred times', b: 'his hands were shaking on stage.',
+    ratt: 'but', fel: ['so', 'because', 'afterwards'], slot: 'mitt',
+    forkl: '"But" visar att nervositeten fanns kvar trots övningen.' },
+  { niva: 2, a: 'The film got terrible reviews', b: 'it became the most watched film of the year.',
+    ratt: 'however', fel: ['because', 'so', 'moreover'], slot: 'start',
+    forkl: 'Dåliga recensioner borde ge få tittare – här blev det tvärtom.' },
+  { niva: 2, a: 'Nour was tired after the trip', b: 'she stayed up to finish her project.',
+    ratt: 'but', fel: ['because', 'so', 'meanwhile'], slot: 'mitt',
+    forkl: 'Trött borde betyda att hon sov – "but" visar att hon gjorde motsatsen.' },
+  { niva: 2, a: 'It was the cheapest jacket in the shop', b: 'it has lasted for five winters.',
+    ratt: 'however', fel: ['therefore', 'because', 'while'], slot: 'start',
+    forkl: 'Billigt brukar betyda kort livslängd – "however" bryter den förväntningen.' },
+
+  // ---------- Nivå 3: tid och tillägg, blandat ----------
+  { niva: 3, a: 'Leo was cooking dinner.', b: 'his sister was setting the table.',
+    ratt: 'meanwhile', fel: ['because', 'so', 'however'], slot: 'start',
+    forkl: 'Två saker hände samtidigt: "meanwhile" = under tiden.' },
+  { niva: 3, a: 'We finished the exam', b: 'we walked down to the beach.',
+    ratt: 'afterwards', fel: ['because', 'so', 'but'], slot: 'start',
+    forkl: 'Stranden kom efter tentan – "afterwards" = efteråt.' },
+  { niva: 3, a: 'The museum is free for students.', b: 'it is open until eight on Thursdays.',
+    ratt: 'moreover', fel: ['because', 'however', 'while'], slot: 'start',
+    forkl: 'Andra satsen lägger till ett nytt skäl till att gå dit – "moreover" = dessutom.' },
+  { niva: 3, a: 'Ali was reading in the kitchen', b: 'the soup was boiling on the stove.', 
+    ratt: 'while', fel: ['because', 'so', 'therefore'], slot: 'mitt',
+    forkl: '"While" binder ihop två saker som pågick samtidigt.' },
+  { niva: 3, a: 'The concert ended at eleven.', b: 'we took the last bus home.',
+    ratt: 'afterwards', fel: ['because', 'so', 'although'], slot: 'start',
+    forkl: 'Bussen kom efter konserten – "afterwards".' },
+  { niva: 3, a: 'The app is free.', b: 'it works without an internet connection.',
+    ratt: 'moreover', fel: ['so', 'because', 'but'], slot: 'start',
+    forkl: '"Moreover" lägger till en bonus – ett till skäl, inte en följd.' },
+  { niva: 3, a: 'Iris was drawing at her desk', b: 'her brother was practising the piano.',
+    ratt: 'while', fel: ['because', 'so', 'however'], slot: 'mitt',
+    forkl: 'Två saker pågick samtidigt i samma rum.' },
+  { niva: 3, a: 'The first train left at six.', b: 'we had breakfast at the station.',
+    ratt: 'afterwards', fel: ['because', 'although', 'moreover'], slot: 'start',
+    forkl: 'Frukosten kom efter tåget hade gått – "afterwards".' },
+  { niva: 3, a: 'The library has over ten thousand books.', b: 'it lends films and games as well.',
+    ratt: 'moreover', fel: ['because', 'however', 'while'], slot: 'start',
+    forkl: 'Filmerna är ett tillägg till böckerna, inte en motsats eller följd.' },
+  { niva: 3, a: 'Sam was fixing his bike', b: 'the rain started pouring down.',
+    ratt: 'when', fel: ['because', 'so', 'moreover'], slot: 'mitt',
+    forkl: '"When" markerar ögonblicket då regnet satte igång, medan han höll på.' }
+];
+
+// "when" behöver en egen post i ordboken
+ORD.when = { kat: KAT.tid, sv: 'when – när, i samma ögonblick' };
+
+if (typeof module !== 'undefined') module.exports = { DATA, ORD, KAT };
