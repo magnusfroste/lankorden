@@ -26,7 +26,7 @@ const DATA = [
   // ---------- Nivå 1: orsak och följd ----------
   { niva: 1, a: 'It was raining hard all morning.', b: 'the football match was cancelled.',
     ratt: 'so', fel: ['because', 'however', 'meanwhile'], slot: 'start',
-    forkl: 'Regnet kom förste och matchen ställdes in efteråt – det är följden, alltså "so".' },
+    forkl: 'Regnet kom först och matchen ställdes in efteråt – det är följden, alltså "so".' },
   { niva: 1, a: 'The match was cancelled', b: 'it was raining hard all morning.',
     ratt: 'because', fel: ['so', 'but', 'moreover'], slot: 'mitt',
     forkl: '"Because" ger orsaken: matchen ställdes in eftersom det regnade.' },
