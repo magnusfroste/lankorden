@@ -11,6 +11,8 @@
 - **Kortbild:** `public/kort.png`, 1200×900 (4:3), spelmoment: en fråga i nivå 2 med de fyra orden
   under satserna, ett ord markerat. Ingen pålagd text, ingen startskärm.
 - **Creator:** LiteIT
+- **Katalograd:** bff64d0c-6d2f-4b8a-9bee-7b0b7d83617b (status `pending` – granskas av timjobbet)
+- **check_app:** 15/15, 0 warnings, 0 failed (https://lankorden.shipholm.dev)
 
 ## Long description
 
