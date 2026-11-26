@@ -3,7 +3,7 @@
 - **Titel:** Länkorden
 - **Kort beskrivning (max 500):** Två engelska satser med en lucka emellan: välj det bindeord som
   gör att de hänger ihop – orsak, följd, motsats eller tid. Åk 7–9.
-- **URL:** https://lankorden.shipholm.dev (katalogens adress: https://lankorden.skolappar.com)
+- **URL:** https://lankorden.shipholm.dev (katalogens adress: https://lankorden.skolappar.org)
 - **Ämne / årskurs / typ / enhet:** Språk / 7–9 / Öva / Alla enheter
 - **Lgr22:** EN.7-9.2.8 – ”Hur sammanbindande ord och andra uttryck används för att skapa struktur
   och språkligt sammanhängande helheter.” (Skolverket, Syllabus API, hämtad 2026-11-23; citerat
