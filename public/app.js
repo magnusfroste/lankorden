@@ -48,13 +48,7 @@
     try {
       if (typeof window.__rost === 'function' && window.__rost(text)) return;
     } catch (e) {}
-    if (!('speechSynthesis' in window)) return;
-    try {
-      window.speechSynthesis.cancel();
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = 'sv-SE'; u.rate = 0.98; u.pitch = 1.03;
-      window.speechSynthesis.speak(u);
-    } catch (e) {}
+        console.warn('saknar mp3:', text);
   }
   window.addEventListener('pointerdown', function enGang() {
     try {
@@ -207,7 +201,7 @@
     el.ljud.setAttribute('aria-pressed', String(S.ljud));
     el.ljud.textContent = S.ljud ? '🔊' : '🔇';
     if (!S.ljud) {
-      try { window.speechSynthesis?.cancel(); } catch (e) {}
+      try { window.__rostStopp?.cancel(); } catch (e) {}
       window.skolappar?.event?.('sound_off');
     } else { blipp(600, 'triangle', 0.12); }
   });
@@ -225,6 +219,6 @@
 
   window.__lankorden = { S, startaNiva, valj, DATA };
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) { try { window.speechSynthesis?.cancel(); } catch (e) {} }
+    if (document.hidden) { try { window.__rostStopp?.cancel(); } catch (e) {} }
   });
 })();
